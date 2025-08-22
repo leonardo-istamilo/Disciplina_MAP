@@ -86,6 +86,12 @@ public class Disciplina {
 	}
 
 	public void adicionarAluno(Aluno aluno) {alunos.add(aluno);}
+
+	public void removerAluno(Aluno aluno) {
+		if (alunos.contains(aluno)) {
+			alunos.remove(aluno);
+		}
+	}
 	
 	public void adicionarHorario(Horario horario) {horarios.add(horario);}
 }

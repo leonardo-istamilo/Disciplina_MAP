@@ -53,7 +53,7 @@ public class Aluno {
 	            }
 	        }
 	    }
-		if (disciplina.quantidadeAlunos() < disciplina.getVagas()) {
+		if (disciplina.getVagas() > 0) {
 			disciplinas.add(disciplina);
 			disciplina.ocuparVaga();
 			disciplina.adicionarAluno(this);
@@ -68,6 +68,7 @@ public class Aluno {
 		if (!disciplinas.isEmpty()) {
 			disciplinas.remove(disciplina);
 			disciplina.desocuparVaga();
+			disciplina.removerAluno(this);
 			System.out.println("Aluno removido da disciplina " + disciplina.getNome() + 
 					           ". Quantidade de vagas na disciplina: " + disciplina.getVagas());
 		} else {

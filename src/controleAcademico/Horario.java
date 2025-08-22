@@ -12,10 +12,18 @@ public class Horario {
         this.fim = fim;
     }
 
-    
     public DiaSemana getDia() {
         return dia;
     }
+
+    public int getInicio() {
+        return inicio;
+    }
+
+    public int getFim() {
+        return fim;
+    }
+
 
 
     // Método para verificar se dois horários se sobrepõem (útil para conflitos)
