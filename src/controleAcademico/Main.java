@@ -72,45 +72,43 @@ public class Main {
 		alglinear.atribuirProf(hygor);
 		lingformais.atribuirProf(antonio);
 		c3.atribuirProf(hugo);
-		
-		System.out.println();
+
 		//Questão 1 lab01
-		//a) quais disciplinas um professor está ministrando?
-		
+		System.out.println("\n---------");
+		System.out.println("A) QUAIS DISCIPLINAS UM PROFESSOR ESTA MINISTRANDO?");
+
 		hygor.listarDisciplinas();
+		System.out.println();
 		sabrina.listarDisciplinas();
-		
-		System.out.println();
-		
-		//b) qual o horário de um professor?
-		
+
+		System.out.println("\n---------");
+		System.out.println("B) QUAL O HORARIO DE UM PROFESSOR?");
+
 		sabrina.exibirHorarios();
-		antonio.exibirHorarios();
-		hygor.exibirHorarios();
-		
 		System.out.println();
-		
-		//c) quais os alunos de uma dada disciplina?
+		antonio.exibirHorarios();
+		System.out.println();
+		hygor.exibirHorarios();
+
+		System.out.println("\n---------");
+		System.out.println("C) QUAIS OS ALUNOS DE UM DISCIPLINA?");
 		
 		map.listarAlunos();
 		c3.listarAlunos();
-		
-		System.out.println();
-		//d) quais as disciplinas de um aluno?
+
+		System.out.println("\n---------");
+		System.out.println("D) QUAIS AS DISCIPLINAS DE UM ALUNO?");
 		
 		miguel.listarDisciplinas();
-		
-		System.out.println();
-		
-		//e) qual o horário de um aluno?
+
+		System.out.println("\n---------");
+		System.out.println("E) QUAL O HORARIO DE UM ALUNO?");
+
 		joao.exibirHorarios();
-		
-		System.out.println();
-		
-		//f) qual o número de alunos de uma disciplina?
-		
+
+		System.out.println("\n---------");
+		System.out.println("F) QUAL O NUMERO DE ALUNOS DE UMA DISCIPLINA?\n");
+
 		map.quantidade_alunos();
-		
-		
 	}
 }

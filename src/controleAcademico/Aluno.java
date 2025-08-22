@@ -80,9 +80,9 @@ public class Aluno {
 	public void listarDisciplinas() {
 		System.out.println("Lista de disciplinas do aluno " + nome);
 		for (Disciplina disciplina : disciplinas) {
-			System.out.println("/Nome da disciplina: " + disciplina.getNome() + 
-							  " /Id: " + disciplina.getId() +
-							  " /Professor: " + disciplina.getProfessor().getNome());
+			System.out.println("| Nome da disciplina: " + disciplina.getNome() +
+							  " | Id: " + disciplina.getId() +
+							  " | Professor: " + disciplina.getProfessor().getNome());
 		}
 	}
 	public ArrayList<Horario> getHorarios(){

@@ -51,7 +51,7 @@ public class Professor {
 	}
 	
     public void exibirHorarios() {
-        System.out.println("Horários do professor " + nome + ":");
+        System.out.println("Horários do(a) professor(a) " + nome + ":");
         for (Disciplina d : disciplinas) {
             for (Horario h : d.getHorarios()) {
                 System.out.println("- " + d.getNome() + ": " + h);

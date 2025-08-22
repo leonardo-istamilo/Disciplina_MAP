@@ -59,14 +59,14 @@ public class Disciplina {
 	
 	public void listarAlunos() {
 		if (!alunos.isEmpty()) {
-			System.out.println("--- Alunos da disciplina: " + nome);
+			System.out.println(" *** Alunos da disciplina: " + nome);
 			for (Aluno aluno : alunos) {
 				System.out.println("----------------------" +
-								   " Nome: " + aluno.getNome() + 
-								   " Matrícula: " + aluno.getMatricula() +
-								   " Curso: " + aluno.getCurso() +
-								   " Turno:" + aluno.getTurno() +
-								   "----------------------");
+								   "\n Nome: " + aluno.getNome() +
+								   "\n Matrícula: " + aluno.getMatricula() +
+								   "\n Curso: " + aluno.getCurso() +
+								   "\n Turno:" + aluno.getTurno() +
+								   "\n----------------------");
 			}
 		} else {
 			System.out.println("Não há alunos matriculados nesta disciplina.");
