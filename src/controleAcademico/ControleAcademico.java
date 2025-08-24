@@ -1,12 +1,30 @@
+package controleAcademico;
+
+import controleAcademico.Aluno;
+import controleAcademico.Professor;
+import controleAcademico.Disciplina;
+import controleAcademico.Horario;
+
+import controleAcademico.AlunoDisciplina;
+import controleAcademico.ProfessorDisciplina;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ControleAcademico {
 
-	private ArrayList<Aluno> alunos;
+	private List<Aluno> alunos;
+	private List<Professor> professores;
+	private List<AlunoDisciplina> alunosDisciplinas;
+	private List<ProfessorDisciplina> professoresDisciplinas;
 
-	private ArrayList<Professor> professores;
+	public ControleAcademico() {
+		alunos = new ArrayList<>();
+		professores = new ArrayList<>();
+		alunosDisciplinas = new ArrayList<>();
+		professoresDisciplinas = new ArrayList<>();
+	}
 
-	private ArrayList<AlunoDisciplina> alunosDisciplinas;
-
-	private ArrayList<ProfessorDisciplina> professoresDisciplinas;
 
 	public void adicionarAlunoDisciplina(Aluno aluno, Disciplina disciplina) {
 
