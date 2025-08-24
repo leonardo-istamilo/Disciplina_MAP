@@ -2,19 +2,19 @@ package controleAcademico;
 
 public class Aluno {
 
-	private int matricula;
+	private String matricula;
 	private String nome;
 
-	public Aluno(String nome, int matricula) {
-		this.nome = nome;
+	public Aluno(String matricula, String nome) {
 		this.matricula = matricula;
+		this.nome = nome;
 	}
 
-	public int getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(int matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 
@@ -25,6 +25,4 @@ public class Aluno {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-}
-
 }

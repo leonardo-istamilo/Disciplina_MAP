@@ -13,28 +13,27 @@ import java.util.List;
 
 public class ControleAcademico {
 
-	private List<Aluno> alunos;
-	private List<Professor> professores;
-	private List<AlunoDisciplina> alunosDisciplinas;
-	private List<ProfessorDisciplina> professoresDisciplinas;
+	private List<Aluno> alunos = new ArrayList<>();
+	private List<Professor> professores = new ArrayList<>();
+	private List<AlunoDisciplina> alunosDisciplinas = new ArrayList<>();
+	private List<ProfessorDisciplina> professoresDisciplinas = new ArrayList<>();
 
-	public ControleAcademico() {
-		alunos = new ArrayList<>();
-		professores = new ArrayList<>();
-		alunosDisciplinas = new ArrayList<>();
-		professoresDisciplinas = new ArrayList<>();
+
+	public void adicionarAlunoDisciplina(Aluno aluno, Disciplina disciplina, Horario horario) {
+			alunosDisciplinas.add(new AlunoDisciplina(aluno, disciplina, horario));
 	}
-
-
-	public void adicionarAlunoDisciplina(Aluno aluno, Disciplina disciplina) {
+	public void removerAlunoDisciplina(Aluno aluno, Disciplina disciplina){
 
 	}
 
-	public void adicionarProfessorDisciplina(Professor professor, Disciplina disciplina) {
+	public void adicionarProfessorDisciplina(Professor professor, Disciplina disciplina, Horario horario) {
+		professoresDisciplinas.add(new ProfessorDisciplina(professor, disciplina,horario));
+	}
+	public void removerProfessorDisciplina(Professor professor, Disciplina disciplina, Horario horario){
 
 	}
-
-	public ArrayList listarDisciplinasAluno(Aluno aluno) {
+s
+	public List listarDisciplinasAluno(Aluno aluno) {
 		return null;
 	}
 

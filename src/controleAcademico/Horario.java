@@ -4,20 +4,30 @@ import controleAcademico.DiaSemana;
 
 public class Horario {
 
-	private int horario;
+	private int horarioInicio;
+	private int horarioFim;
 	private DiaSemana diaSemana;
 
-	public Horario(int horario, DiaSemana diaSemana) {
-		this.horario = horario;
+	public Horario(int horarioInicio, int horarioFim, DiaSemana diaSemana) {
+		this.horarioInicio = horarioInicio;
+		this.horarioFim = horarioFim;
 		this.diaSemana = diaSemana;
 	}
 
-	public int getHorario() {
-		return horario;
+	public int getHorarioInicio() {
+		return horarioInicio;
 	}
 
-	public void setHorario(int horario) {
-		this.horario = horario;
+	public void setHorarioInicio(int horarioInicio) {
+		this.horarioInicio = horarioInicio;
+	}
+
+	public int getHorarioFim() {
+		return horarioFim;
+	}
+
+	public void setHorarioFim(int horarioFim) {
+		this.horarioFim = horarioFim;
 	}
 
 	public DiaSemana getDiaSemana() {

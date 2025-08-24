@@ -2,19 +2,21 @@ package controleAcademico;
 
 public class Professor {
 
-	private int matricula;
 	private String nome;
+	private String matricula;
 
-	public Professor(int matricula, String nome) {
-		this.matricula = matricula;
+
+	public Professor( String nome, String matricula) {
 		this.nome = nome;
+		this.matricula = matricula;
+
 	}
 
-	public int getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(int matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 
