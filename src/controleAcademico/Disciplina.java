@@ -34,4 +34,13 @@ public class Disciplina {
 	public void setSala(String sala) {
 		this.sala = sala;
 	}
+
+	@Override
+	public String toString() {
+		return "Disciplina{" +
+				"id='" + id + '\'' +
+				", nome='" + nome + '\'' +
+				", sala='" + sala + '\'' +
+				'}';
+	}
 }

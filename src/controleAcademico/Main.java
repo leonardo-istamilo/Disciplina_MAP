@@ -10,6 +10,8 @@ import controleAcademico.AlunoDisciplina;
 import controleAcademico.ProfessorDisciplina;
 import controleAcademico.ControleAcademico;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -49,6 +51,7 @@ public class Main {
         // Matriculando Alunos em Disciplinas
         controle.adicionarAlunoDisciplina(pedro, map, h1);
         controle.adicionarAlunoDisciplina(miguel, map, h2);
+        controle.adicionarAlunoDisciplina(pedro, aps, h2);
 
         // Atribuindo Professores a Disciplinas
         controle.adicionarProfessorDisciplina(sabrina, map, h1);
@@ -59,38 +62,48 @@ public class Main {
         System.out.println("\n---------");
         System.out.println("A) QUAIS DISCIPLINAS UM PROFESSOR ESTA MINISTRANDO?");
 
-        hygor.listarDisciplinas();
-        System.out.println();
-        sabrina.listarDisciplinas();
+        List<Disciplina> disciplinasProfessor = controle.listarDisciplinasProfessores(sabrina);
+        for (Disciplina disciplina : disciplinasProfessor) {
+            System.out.println("  -> "+disciplina.getNome());
+        }
 
         System.out.println("\n---------");
         System.out.println("B) QUAL O HORARIO DE UM PROFESSOR?");
 
-        sabrina.exibirHorarios();
-        System.out.println();
-        antonio.exibirHorarios();
-        System.out.println();
-        hygor.exibirHorarios();
+        List<Horario> horarioProfessor = controle.listarHorarioProfessor(sabrina);
+        for (Horario hr : horarioProfessor) {
+            System.out.println("  -> "+hr.getHorarioInicio()+"-"+hr.getHorarioFim());
+        }
 
         System.out.println("\n---------");
         System.out.println("C) QUAIS OS ALUNOS DE UM DISCIPLINA?");
 
-        map.listarAlunos();
-        c3.listarAlunos();
+        List<Aluno> alunos = controle.listarAlunosDisciplina(map);
+        for (Aluno a : alunos) {
+            System.out.println("  -> "+a.getNome());
+        }
+
 
         System.out.println("\n---------");
         System.out.println("D) QUAIS AS DISCIPLINAS DE UM ALUNO?");
 
-        miguel.listarDisciplinas();
+        List<Disciplina> disciplinas = controle.listarDisciplinasAluno(pedro);
+        for (Disciplina disciplina : disciplinas) {
+            System.out.println("  -> "+disciplina.getNome());
+        }
 
         System.out.println("\n---------");
         System.out.println("E) QUAL O HORARIO DE UM ALUNO?");
 
-        joao.exibirHorarios();
+        List<Horario> horarios = controle.listarHorarioAluno(pedro);
+        for (Horario hr : horarios) {
+            System.out.println("  -> "+hr.getHorarioInicio()+"-"+hr.getHorarioFim());
+        }
+
 
         System.out.println("\n---------");
-        System.out.println("F) QUAL O NUMERO DE ALUNOS DE UMA DISCIPLINA?\n");
+        System.out.println("F) QUAL O NUMERO DE ALUNOS DE UMA DISCIPLINA?");
+        System.out.println("  -> "+controle.quantidadeAlunosdisciplina(map));
 
-        map.quantidade_alunos();
     }
 }

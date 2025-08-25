@@ -2,12 +2,14 @@ package controleAcademico;
 
 public class Aluno {
 
-	private String matricula;
 	private String nome;
+	private String matricula;
 
-	public Aluno(String matricula, String nome) {
-		this.matricula = matricula;
+
+	public Aluno(String nome, String matricula) {
 		this.nome = nome;
+		this.matricula = matricula;
+
 	}
 
 	public String getMatricula() {
@@ -24,5 +26,13 @@ public class Aluno {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Override
+	public String toString() {
+		return "Aluno{" +
+				"matricula='" + matricula + '\'' +
+				", nome='" + nome + '\'' +
+				'}';
 	}
 }

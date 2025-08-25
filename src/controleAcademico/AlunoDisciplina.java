@@ -43,4 +43,6 @@ public class AlunoDisciplina {
 	public void setHorario(Horario horario) {
 		this.horario = horario;
 	}
+
+
 }

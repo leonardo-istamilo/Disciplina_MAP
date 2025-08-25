@@ -23,6 +23,7 @@ public class ControleAcademico {
 			alunosDisciplinas.add(new AlunoDisciplina(aluno, disciplina, horario));
 	}
 	public void removerAlunoDisciplina(Aluno aluno, Disciplina disciplina){
+		
 
 	}
 
@@ -32,29 +33,106 @@ public class ControleAcademico {
 	public void removerProfessorDisciplina(Professor professor, Disciplina disciplina, Horario horario){
 
 	}
-s
-	public List listarDisciplinasAluno(Aluno aluno) {
-		return null;
+
+	List<Disciplina> disciplinasAluno = new ArrayList<>();
+	public List<Disciplina> listarDisciplinasAluno(Aluno aluno) {
+		for (AlunoDisciplina ad : alunosDisciplinas) {
+			if (ad.getAluno().equals(aluno)){
+				disciplinasAluno.add(ad.getDisciplina());
+			}
+		}
+		return disciplinasAluno;
 	}
 
-	public ArrayList listarDisciplinasProfessor(Professor professor) {
-		return null;
+	List<Disciplina> disciplinasProfessor = new ArrayList<>();
+	public List<Disciplina> listarDisciplinasProfessores(Professor professor) {
+		for (ProfessorDisciplina ad : professoresDisciplinas) {
+			if (ad.getProfessor().equals(professor)){
+				disciplinasProfessor.add(ad.getDisciplina());
+			}
+		}
+		return disciplinasProfessor;
 	}
 
-	public ArrayList listarHorarioAluno(Aluno aluno) {
-		return null;
+	List<Horario> horariosAluno = new ArrayList<>();
+	public List<Horario> listarHorarioAluno(Aluno aluno) {
+		for (AlunoDisciplina ad : alunosDisciplinas) {
+			if (ad.getAluno().equals(aluno)){
+				horariosAluno.add(ad.getHorario());
+			}
+		}
+		return horariosAluno;
 	}
 
-	public ArrayList listarHorarioProfessor(Professor professor) {
-		return null;
+	List<Horario> horariosProfessor = new ArrayList<>();
+	public List<Horario> listarHorarioProfessor(Professor professor) {
+		for (ProfessorDisciplina pd : professoresDisciplinas) {
+			if (pd.getProfessor().equals(professor)){
+				horariosProfessor.add(pd.getHorario());
+			}
+		}
+		return horariosProfessor;
 	}
 
-	public ArrayList listarAlunosDisciplina(AlunoDisciplina alunoDisciplina) {
-		return null;
+	List<Aluno> aluno = new ArrayList<>();
+	public List<Aluno> listarAlunosDisciplina(Disciplina disciplina) {
+		for (AlunoDisciplina ad : alunosDisciplinas){
+			if (ad.getDisciplina().equals(disciplina)){
+				aluno.add((ad.getAluno()));
+			}
+		}
+		return aluno;
 	}
 
+	int contador = 0;
 	public int quantidadeAlunosdisciplina(Disciplina disciplina) {
-		return 0;
+		for (AlunoDisciplina ad : alunosDisciplinas) {
+			if (ad.getDisciplina().equals(disciplina)){
+				contador++;
+			}
+		}
+		return contador;
 	}
 
+	public List<Aluno> getAlunos() {
+		return alunos;
+	}
+
+	public void setAlunos(List<Aluno> alunos) {
+		this.alunos = alunos;
+	}
+
+	public List<Professor> getProfessores() {
+		return professores;
+	}
+
+	public void setProfessores(List<Professor> professores) {
+		this.professores = professores;
+	}
+
+	public List<AlunoDisciplina> getAlunosDisciplinas() {
+		return alunosDisciplinas;
+	}
+
+	public void setAlunosDisciplinas(List<AlunoDisciplina> alunosDisciplinas) {
+		this.alunosDisciplinas = alunosDisciplinas;
+	}
+
+	public List<ProfessorDisciplina> getProfessoresDisciplinas() {
+		return professoresDisciplinas;
+	}
+
+	public void setProfessoresDisciplinas(List<ProfessorDisciplina> professoresDisciplinas) {
+		this.professoresDisciplinas = professoresDisciplinas;
+	}
+
+	@Override
+	public String toString() {
+		return "ControleAcademico{" +
+				"alunos=" + alunos +
+				", professores=" + professores +
+				", alunosDisciplinas=" + alunosDisciplinas +
+				", professoresDisciplinas=" + professoresDisciplinas +
+				'}';
+	}
 }
