@@ -19,24 +19,126 @@ public class ControleAcademico {
 	private List<ProfessorDisciplina> professoresDisciplinas = new ArrayList<>();
 
 
-	public void adicionarAlunoDisciplina(Aluno aluno, Disciplina disciplina, Horario horario) {
-			alunosDisciplinas.add(new AlunoDisciplina(aluno, disciplina, horario));
+	public boolean adicionarAlunoSistema(Aluno aluno) {
+		if (alunos.contains(aluno)) {
+			System.out.println("Erro: Aluno já existe no sistema.");
+			return false;
+		}
+		return this.alunos.add(aluno);
 	}
 
+	public boolean adicionarProfessorSistema(Professor professor) {
+		if (professores.contains(professor)) {
+			System.out.println("Erro: Professor já existe no sistema.");
+			return false;
+		}
+		return this.professores.add(professor);
+	}
+
+	public void adicionarAlunoDisciplina(Aluno aluno, Disciplina disciplina, Horario horario) {
+		// 1. Prevenir matrícula duplicada
+		for (AlunoDisciplina ad : alunosDisciplinas) {
+			if (ad.getAluno().equals(aluno) && ad.getDisciplina().equals(disciplina)) {
+				System.out.println("Erro: O aluno já está matriculado nesta disciplina.");
+				return;
+			}
+		}
+
+		// 2. Prevenir choque de horário
+		for (AlunoDisciplina ad : alunosDisciplinas) {
+			if (ad.getAluno().equals(aluno)) {
+				if (ad.getHorario().conflitaCom(horario)) {
+					System.out.println("Erro: A disciplina tem um conflito de horário com outra disciplina do aluno.");
+					return;
+				}
+			}
+		}
+
+		// Se as validações passarem, adicione a matrícula
+		alunosDisciplinas.add(new AlunoDisciplina(aluno, disciplina, horario));
+		System.out.println("Matrícula de " + aluno.getNome() + " na disciplina " + disciplina.getNome() + " realizada com sucesso.");
+	}
+
+
+
 	public boolean removerAlunoDisciplina(Aluno aluno, Disciplina disciplina) {
-		return alunosDisciplinas.removeIf(ad -> ad.getAluno().equals(aluno) && ad.getDisciplina().equals(disciplina));
+		// Verificação adicionada: verifica se a matrícula existe antes de tentar remover
+		for(AlunoDisciplina ad : alunosDisciplinas) {
+			if(ad.getAluno().equals(aluno) && ad.getDisciplina().equals(disciplina)) {
+				return alunosDisciplinas.remove(ad);
+			}
+		}
+		return false;
+	}
+
+	public void removerAlunoDoSistema(Aluno aluno) {
+		// 1. Verifica se o aluno existe na lista principal de ALUNOS
+		if (!alunos.contains(aluno)) {
+			System.out.println("Erro: Aluno não encontrado no sistema.");
+			return;
+		}
+
+		// 2. Remove todos os vínculos de matrícula do aluno.
+		alunosDisciplinas.removeIf(ad -> ad.getAluno().equals(aluno));
+		System.out.println("Todos os vínculos de matrícula do aluno " + aluno.getNome() + " foram removidos.");
+
+		// 3. Remove o aluno da lista principal
+		alunos.remove(aluno);
+		System.out.println("Aluno " + aluno.getNome() + " removido do sistema com sucesso.");
 	}
 
 	public void adicionarProfessorDisciplina(Professor professor, Disciplina disciplina, Horario horario) {
-		professoresDisciplinas.add(new ProfessorDisciplina(professor, disciplina,horario));
+		// 1. Prevenir vínculo duplicado
+		for (ProfessorDisciplina pd : professoresDisciplinas) {
+			if (pd.getProfessor().equals(professor) && pd.getDisciplina().equals(disciplina)) {
+				System.out.println("Erro: O professor já está vinculado a esta disciplina.");
+				return;
+			}
+		}
+
+		// 2. Prevenir choque de horário
+		for (ProfessorDisciplina pd : professoresDisciplinas) {
+			if (pd.getProfessor().equals(professor)) {
+				if (pd.getHorario().conflitaCom(horario)) {
+					System.out.println("Erro: O professor tem um conflito de horário com outra disciplina.");
+					return;
+				}
+			}
+		}
+
+		// Se as validações passarem, adicione o vínculo
+		professoresDisciplinas.add(new ProfessorDisciplina(professor, disciplina, horario));
+		System.out.println("Vínculo do professor " + professor.getNome() + " com a disciplina " + disciplina.getNome() + " criado com sucesso.");
 	}
 
 	public boolean removerProfessorDisciplina(Professor professor, Disciplina disciplina, Horario horario){
-		return professoresDisciplinas.removeIf(pd -> pd.getProfessor().equals(professor) && pd.getDisciplina().equals(disciplina));
+		// Verificação adicionada: verifica se o vínculo existe antes de tentar remover
+		for(ProfessorDisciplina pd : professoresDisciplinas) {
+			if(pd.getProfessor().equals(professor) && pd.getDisciplina().equals(disciplina)) {
+				return professoresDisciplinas.remove(pd);
+			}
+		}
+		return false;
 	}
 
-	List<Disciplina> disciplinasAluno = new ArrayList<>();
+	public void removerProfessorDoSistema(Professor professor) {
+		// 1. Verifica se o professor existe na lista principal
+		if (!professores.contains(professor)) {
+			System.out.println("Erro: Professor não encontrado no sistema.");
+			return;
+		}
+
+		// 2. Remove todos os vínculos de disciplina do professor.
+		professoresDisciplinas.removeIf(pd -> pd.getProfessor().equals(professor));
+		System.out.println("Todos os vínculos de disciplina do professor " + professor.getNome() + " foram removidos.");
+
+		// 3. Remove o professor da lista principal
+		professores.remove(professor);
+		System.out.println("Professor " + professor.getNome() + " removido do sistema com sucesso.");
+	}
+
 	public List<Disciplina> listarDisciplinasAluno(Aluno aluno) {
+		List<Disciplina> disciplinasAluno = new ArrayList<>();
 		for (AlunoDisciplina ad : alunosDisciplinas) {
 			if (ad.getAluno().equals(aluno)){
 				disciplinasAluno.add(ad.getDisciplina());
@@ -45,8 +147,8 @@ public class ControleAcademico {
 		return disciplinasAluno;
 	}
 
-	List<Disciplina> disciplinasProfessor = new ArrayList<>();
 	public List<Disciplina> listarDisciplinasProfessores(Professor professor) {
+		List<Disciplina> disciplinasProfessor = new ArrayList<>();
 		for (ProfessorDisciplina ad : professoresDisciplinas) {
 			if (ad.getProfessor().equals(professor)){
 				disciplinasProfessor.add(ad.getDisciplina());
@@ -55,8 +157,8 @@ public class ControleAcademico {
 		return disciplinasProfessor;
 	}
 
-	List<Horario> horariosAluno = new ArrayList<>();
 	public List<Horario> listarHorarioAluno(Aluno aluno) {
+		List<Horario> horariosAluno = new ArrayList<>();
 		for (AlunoDisciplina ad : alunosDisciplinas) {
 			if (ad.getAluno().equals(aluno)){
 				horariosAluno.add(ad.getHorario());
@@ -65,8 +167,8 @@ public class ControleAcademico {
 		return horariosAluno;
 	}
 
-	List<Horario> horariosProfessor = new ArrayList<>();
 	public List<Horario> listarHorarioProfessor(Professor professor) {
+		List<Horario> horariosProfessor = new ArrayList<>();
 		for (ProfessorDisciplina pd : professoresDisciplinas) {
 			if (pd.getProfessor().equals(professor)){
 				horariosProfessor.add(pd.getHorario());
@@ -75,8 +177,9 @@ public class ControleAcademico {
 		return horariosProfessor;
 	}
 
-	List<Aluno> aluno = new ArrayList<>();
+
 	public List<Aluno> listarAlunosDisciplina(Disciplina disciplina) {
+		List<Aluno> aluno = new ArrayList<>();
 		for (AlunoDisciplina ad : alunosDisciplinas){
 			if (ad.getDisciplina().equals(disciplina)){
 				aluno.add((ad.getAluno()));
@@ -85,8 +188,8 @@ public class ControleAcademico {
 		return aluno;
 	}
 
-	int contador = 0;
 	public int quantidadeAlunosdisciplina(Disciplina disciplina) {
+		int contador = 0;
 		for (AlunoDisciplina ad : alunosDisciplinas) {
 			if (ad.getDisciplina().equals(disciplina)){
 				contador++;
@@ -94,6 +197,7 @@ public class ControleAcademico {
 		}
 		return contador;
 	}
+
 
 	public List<Aluno> getAlunos() {
 		return alunos;
@@ -127,13 +231,4 @@ public class ControleAcademico {
 		this.professoresDisciplinas = professoresDisciplinas;
 	}
 
-	@Override
-	public String toString() {
-		return "ControleAcademico{" +
-				"alunos=" + alunos +
-				", professores=" + professores +
-				", alunosDisciplinas=" + alunosDisciplinas +
-				", professoresDisciplinas=" + professoresDisciplinas +
-				'}';
-	}
 }

@@ -21,10 +21,18 @@ public class Main {
         //usado para geração aleatória de Id's e Matrículas -> String.valueOf(r.nextInt(100000000)
         Random r = new Random();
 
+        ControleAcademico controle = new ControleAcademico();
+
         //Criando professores
         Professor sabrina = new Professor("Sabrina", String.valueOf(r.nextInt(100000000)));
         Professor antonio = new Professor("Antônio", String.valueOf(r.nextInt(10000000)));
         Professor daniel = new Professor("daniel", String.valueOf(r.nextInt(1000000000)));
+
+        // Adicionando professores ao sistema
+        controle.adicionarProfessorSistema(sabrina);
+        controle.adicionarProfessorSistema(antonio);
+        controle.adicionarProfessorSistema(daniel);
+
 
         //Criando alunos
         Aluno pedro = new Aluno("Pedro", String.valueOf(r.nextInt(100000000)));
@@ -34,6 +42,15 @@ public class Main {
         Aluno diogo = new Aluno("Diogo", String.valueOf(r.nextInt(100000000)));
         Aluno joao = new Aluno("João", String.valueOf(r.nextInt(100000000)));
         Aluno jose = new Aluno("José", String.valueOf(r.nextInt(100000000)));
+
+        // Adicionando professores ao sistema
+        controle.adicionarAlunoSistema(pedro);
+        controle.adicionarAlunoSistema(ana);
+        controle.adicionarAlunoSistema(miguel);
+        controle.adicionarAlunoSistema(paulo);
+        controle.adicionarAlunoSistema(diogo);
+        controle.adicionarAlunoSistema(joao);
+        controle.adicionarAlunoSistema(jose);
 
         //Criando horarios
         Horario h1 = new Horario(7,9, DiaSemana.Segunda);
@@ -45,13 +62,15 @@ public class Main {
         //Criando disciplinas
         Disciplina map = new Disciplina(String.valueOf(r.nextInt(10000)), "Metódos Avançados de Programação", "LAB INFO III - Central de Integração Acadêmica Paulo Freire");
         Disciplina aps = new Disciplina(String.valueOf(r.nextInt(10000)), "Análise e Projeto de Sistemas", "Sala C-107 - CCT");
+        Disciplina engSoft = new Disciplina("ENGSOFT", "Engenharia de Software", "Sala 102");
 
-        ControleAcademico controle = new ControleAcademico();
+
 
         // Matriculando Alunos em Disciplinas
         controle.adicionarAlunoDisciplina(pedro, map, h1);
         controle.adicionarAlunoDisciplina(miguel, map, h2);
         controle.adicionarAlunoDisciplina(pedro, aps, h2);
+        controle.adicionarAlunoDisciplina(diogo, engSoft, h3);
 
         // Atribuindo Professores a Disciplinas
         controle.adicionarProfessorDisciplina(sabrina, map, h1);

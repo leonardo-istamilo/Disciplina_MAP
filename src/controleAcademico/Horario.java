@@ -14,6 +14,15 @@ public class Horario {
 		this.diaSemana = diaSemana;
 	}
 
+	// Método para verificar se dois horários se sobrepõem
+	public boolean conflitaCom(Horario outro) {
+		if (!this.diaSemana.equals(outro.getDiaSemana())) {
+			return false;
+		}
+
+		return (this.horarioInicio < outro.getHorarioFim() && outro.getHorarioInicio() < this.horarioFim);
+	}
+
 	public int getHorarioInicio() {
 		return horarioInicio;
 	}
