@@ -16,9 +16,6 @@ public class ProfessorDisciplina {
 		this.horario = horario;
 	}
 
-	public int cancelarVinculoDisciplina(Professor professor, Disciplina disciplina) {
-		return 0;
-	}
 
 	public Professor getProfessor() {
 		return professor;

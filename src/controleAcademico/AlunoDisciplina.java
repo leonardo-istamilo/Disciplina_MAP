@@ -16,9 +16,6 @@ public class AlunoDisciplina {
 		this.horario = horario;
 	}
 
-	public int cancelarMatriculaDisciplina(Aluno aluno, Disciplina disciplina) {
-		return 0;
-	}
 
 	public Aluno getAluno() {
 		return aluno;

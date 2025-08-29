@@ -22,16 +22,17 @@ public class ControleAcademico {
 	public void adicionarAlunoDisciplina(Aluno aluno, Disciplina disciplina, Horario horario) {
 			alunosDisciplinas.add(new AlunoDisciplina(aluno, disciplina, horario));
 	}
-	public void removerAlunoDisciplina(Aluno aluno, Disciplina disciplina){
-		
 
+	public boolean removerAlunoDisciplina(Aluno aluno, Disciplina disciplina) {
+		return alunosDisciplinas.removeIf(ad -> ad.getAluno().equals(aluno) && ad.getDisciplina().equals(disciplina));
 	}
 
 	public void adicionarProfessorDisciplina(Professor professor, Disciplina disciplina, Horario horario) {
 		professoresDisciplinas.add(new ProfessorDisciplina(professor, disciplina,horario));
 	}
-	public void removerProfessorDisciplina(Professor professor, Disciplina disciplina, Horario horario){
 
+	public boolean removerProfessorDisciplina(Professor professor, Disciplina disciplina, Horario horario){
+		return professoresDisciplinas.removeIf(pd -> pd.getProfessor().equals(professor) && pd.getDisciplina().equals(disciplina));
 	}
 
 	List<Disciplina> disciplinasAluno = new ArrayList<>();
