@@ -42,6 +42,11 @@ public class ControleAcademicoTest {
         horario2 = new Horario(10, 12, DiaSemana.Terca);
         horarioConflitante = new Horario(8, 10, DiaSemana.Segunda);
 
+        // Adicionando horários às disciplinas
+        disciplina1.adicionarHorario(horario1);
+        disciplina2.adicionarHorario(horario2);
+        disciplina3.adicionarHorario(horarioConflitante);
+
         // Adicionando entidades ao sistema
         controle.getAlunos().add(aluno1);
         controle.getAlunos().add(aluno2);
@@ -53,21 +58,21 @@ public class ControleAcademicoTest {
 
     @Test
     public void testAdicionarAlunoDisciplinaComSucesso() {
-        controle.adicionarAlunoDisciplina(aluno1, disciplina1, horario1);
+        controle.adicionarAlunoDisciplina(aluno1, disciplina1);
         assertEquals(1, controle.getAlunosDisciplinas().size());
     }
 
     @Test
     public void testAdicionarAlunoDisciplinaDuplicada() {
-        controle.adicionarAlunoDisciplina(aluno1, disciplina1, horario1);
-        controle.adicionarAlunoDisciplina(aluno1, disciplina1, horario1); // Tentativa de duplicar
+        controle.adicionarAlunoDisciplina(aluno1, disciplina1);
+        controle.adicionarAlunoDisciplina(aluno1, disciplina1); // Tentativa de duplicar
         assertEquals(1, controle.getAlunosDisciplinas().size());
     }
 
     @Test
     public void testAdicionarAlunoDisciplinaComConflitoDeHorario() {
-        controle.adicionarAlunoDisciplina(aluno1, disciplina1, horario1); // Matrícula com sucesso
-        controle.adicionarAlunoDisciplina(aluno1, disciplina3, horarioConflitante); // Tentativa com conflito
+        controle.adicionarAlunoDisciplina(aluno1, disciplina1); // Matrícula com sucesso
+        controle.adicionarAlunoDisciplina(aluno1, disciplina3); // Tentativa com conflito
         assertEquals(1, controle.getAlunosDisciplinas().size());
     }
 
@@ -75,21 +80,21 @@ public class ControleAcademicoTest {
 
     @Test
     public void testAdicionarProfessorDisciplinaComSucesso() {
-        controle.adicionarProfessorDisciplina(professor1, disciplina1, horario1);
+        controle.adicionarProfessorDisciplina(professor1, disciplina1);
         assertEquals(1, controle.getProfessoresDisciplinas().size());
     }
 
     @Test
     public void testAdicionarProfessorDisciplinaDuplicada() {
-        controle.adicionarProfessorDisciplina(professor1, disciplina1, horario1);
-        controle.adicionarProfessorDisciplina(professor1, disciplina1, horario1); // Tentativa de duplicar
+        controle.adicionarProfessorDisciplina(professor1, disciplina1);
+        controle.adicionarProfessorDisciplina(professor1, disciplina1); // Tentativa de duplicar
         assertEquals(1, controle.getProfessoresDisciplinas().size());
     }
 
     @Test
     public void testAdicionarProfessorDisciplinaComConflitoDeHorario() {
-        controle.adicionarProfessorDisciplina(professor1, disciplina1, horario1);
-        controle.adicionarProfessorDisciplina(professor1, disciplina3, horarioConflitante);
+        controle.adicionarProfessorDisciplina(professor1, disciplina1);
+        controle.adicionarProfessorDisciplina(professor1, disciplina3);
         assertEquals(1, controle.getProfessoresDisciplinas().size());
     }
 
@@ -97,7 +102,7 @@ public class ControleAcademicoTest {
 
     @Test
     public void testRemoverAlunoDoSistemaComSucesso() {
-        controle.adicionarAlunoDisciplina(aluno1, disciplina1, horario1);
+        controle.adicionarAlunoDisciplina(aluno1, disciplina1);
         assertEquals(1, controle.getAlunosDisciplinas().size());
 
         controle.removerAlunoDoSistema(aluno1);
@@ -117,7 +122,7 @@ public class ControleAcademicoTest {
     @Test
     public void testRemoverProfessorDoSistemaComSucesso()
     {
-        controle.adicionarProfessorDisciplina(professor1, disciplina1, horario1);
+        controle.adicionarProfessorDisciplina(professor1, disciplina1);
         assertEquals(1, controle.getProfessoresDisciplinas().size());
 
         controle.removerProfessorDoSistema(professor1);
@@ -131,7 +136,7 @@ public class ControleAcademicoTest {
         assertEquals(totalProfessores, controle.getProfessores().size());
     }
 
-    // --- Novos Testes de Listagem e Contagem ---
+    // --- Testes de Listagem e Contagem ---
 
     @Test
     public void testListarDisciplinasAluno_SemDisciplinas() {
@@ -141,8 +146,8 @@ public class ControleAcademicoTest {
 
     @Test
     public void testListarDisciplinasAluno_ComDisciplinas() {
-        controle.adicionarAlunoDisciplina(aluno1, disciplina1, horario1);
-        controle.adicionarAlunoDisciplina(aluno1, disciplina2, horario2);
+        controle.adicionarAlunoDisciplina(aluno1, disciplina1);
+        controle.adicionarAlunoDisciplina(aluno1, disciplina2);
         List<Disciplina> disciplinas = controle.listarDisciplinasAluno(aluno1);
         assertEquals(2, disciplinas.size());
         assertTrue(disciplinas.contains(disciplina1));
@@ -156,12 +161,12 @@ public class ControleAcademicoTest {
 
     @Test
     public void testQuantidadeAlunosDisciplina_ComAlunos() {
-        controle.adicionarAlunoDisciplina(aluno1, disciplina1, horario1);
-        controle.adicionarAlunoDisciplina(aluno2, disciplina1, horario1);
+        controle.adicionarAlunoDisciplina(aluno1, disciplina1);
+        controle.adicionarAlunoDisciplina(aluno2, disciplina1);
         assertEquals(2, controle.quantidadeAlunosdisciplina(disciplina1));
     }
 
-    // --- Novos Testes para a classe Horario ---
+    // ---  Testes para a classe Horario ---
 
     @Test
     public void testHorarioConflitaCom_HorariosAdjacentes() {

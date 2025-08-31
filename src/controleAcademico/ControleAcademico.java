@@ -35,7 +35,7 @@ public class ControleAcademico {
 		return this.professores.add(professor);
 	}
 
-	public void adicionarAlunoDisciplina(Aluno aluno, Disciplina disciplina, Horario horario) {
+	public void adicionarAlunoDisciplina(Aluno aluno, Disciplina disciplina) {
 		// 1. Prevenir matrícula duplicada
 		for (AlunoDisciplina ad : alunosDisciplinas) {
 			if (ad.getAluno().equals(aluno) && ad.getDisciplina().equals(disciplina)) {
@@ -45,17 +45,20 @@ public class ControleAcademico {
 		}
 
 		// 2. Prevenir choque de horário
-		for (AlunoDisciplina ad : alunosDisciplinas) {
-			if (ad.getAluno().equals(aluno)) {
-				if (ad.getHorario().conflitaCom(horario)) {
+		List<Horario> horariosAluno = listarHorarioAluno(aluno);
+		for (Horario horarioExistente : horariosAluno) {
+			for (Horario horarioNovo : disciplina.getHorarios()) {
+				if(horarioExistente.conflitaCom(horarioNovo)){
 					System.out.println("Erro: A disciplina tem um conflito de horário com outra disciplina do aluno.");
 					return;
 				}
+
+
 			}
 		}
 
 		// Se as validações passarem, adicione a matrícula
-		alunosDisciplinas.add(new AlunoDisciplina(aluno, disciplina, horario));
+		alunosDisciplinas.add(new AlunoDisciplina(aluno, disciplina));
 		System.out.println("Matrícula de " + aluno.getNome() + " na disciplina " + disciplina.getNome() + " realizada com sucesso.");
 	}
 
@@ -87,7 +90,7 @@ public class ControleAcademico {
 		System.out.println("Aluno " + aluno.getNome() + " removido do sistema com sucesso.");
 	}
 
-	public void adicionarProfessorDisciplina(Professor professor, Disciplina disciplina, Horario horario) {
+	public void adicionarProfessorDisciplina(Professor professor, Disciplina disciplina) {
 		// 1. Prevenir vínculo duplicado
 		for (ProfessorDisciplina pd : professoresDisciplinas) {
 			if (pd.getProfessor().equals(professor) && pd.getDisciplina().equals(disciplina)) {
@@ -97,9 +100,10 @@ public class ControleAcademico {
 		}
 
 		// 2. Prevenir choque de horário
-		for (ProfessorDisciplina pd : professoresDisciplinas) {
-			if (pd.getProfessor().equals(professor)) {
-				if (pd.getHorario().conflitaCom(horario)) {
+		List<Horario> horariosProfessor = listarHorarioProfessor(professor);
+		for (Horario horarioExistente : horariosProfessor) {
+			for (Horario horarioNovo : disciplina.getHorarios()) {
+				if (horarioExistente.conflitaCom(horarioNovo)) {
 					System.out.println("Erro: O professor tem um conflito de horário com outra disciplina.");
 					return;
 				}
@@ -107,7 +111,7 @@ public class ControleAcademico {
 		}
 
 		// Se as validações passarem, adicione o vínculo
-		professoresDisciplinas.add(new ProfessorDisciplina(professor, disciplina, horario));
+		professoresDisciplinas.add(new ProfessorDisciplina(professor, disciplina));
 		System.out.println("Vínculo do professor " + professor.getNome() + " com a disciplina " + disciplina.getNome() + " criado com sucesso.");
 	}
 
@@ -161,7 +165,7 @@ public class ControleAcademico {
 		List<Horario> horariosAluno = new ArrayList<>();
 		for (AlunoDisciplina ad : alunosDisciplinas) {
 			if (ad.getAluno().equals(aluno)){
-				horariosAluno.add(ad.getHorario());
+                horariosAluno.addAll(ad.getDisciplina().getHorarios());
 			}
 		}
 		return horariosAluno;
@@ -171,7 +175,7 @@ public class ControleAcademico {
 		List<Horario> horariosProfessor = new ArrayList<>();
 		for (ProfessorDisciplina pd : professoresDisciplinas) {
 			if (pd.getProfessor().equals(professor)){
-				horariosProfessor.add(pd.getHorario());
+				horariosProfessor.addAll(pd.getDisciplina().getHorarios());
 			}
 		}
 		return horariosProfessor;

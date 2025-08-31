@@ -8,12 +8,10 @@ public class ProfessorDisciplina {
 
 	private Professor professor;
 	private Disciplina disciplina;
-	private Horario horario;
 
-	public ProfessorDisciplina(Professor professor, Disciplina disciplina, Horario horario) {
+	public ProfessorDisciplina(Professor professor, Disciplina disciplina) {
 		this.professor = professor;
 		this.disciplina = disciplina;
-		this.horario = horario;
 	}
 
 
@@ -33,11 +31,5 @@ public class ProfessorDisciplina {
 		this.disciplina = disciplina;
 	}
 
-	public Horario getHorario() {
-		return horario;
-	}
 
-	public void setHorario(Horario horario) {
-		this.horario = horario;
-	}
 }
