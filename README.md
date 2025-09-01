@@ -19,7 +19,7 @@ As atividades e projetos desenvolvidos ao longo da disciplina serão organizados
 Cada atividade estará em uma branch com um nome descritivo. Por exemplo:
 
   * [Disciplina_MAP/ATV_1-Expert](https://github.com/leonardo-istamilo/Disciplina_MAP/tree/ATV_1-Expert)
-  * [Disciplina_MAP/ATV_1-Correcao](https://github.com/leonardo-istamilo/Disciplina_MAP/tree/ATV_1-Expert-Correcao)
+  * [Disciplina_MAP/ATV_1-Expert-Correcao](https://github.com/leonardo-istamilo/Disciplina_MAP/tree/ATV_1-Expert-Correcao)
   * [Disciplina_MAP/ATV_2-Creator](https://github.com/leonardo-istamilo/Disciplina_MAP/tree/ATV_2-Creator)
 
 Para visualizar o conteúdo de uma atividade específica, você pode usar o comando:
@@ -60,7 +60,7 @@ git checkout <nome-da-branch>
   <tr>
     <td align="center">
       <a href="https://github.com/clarafari">
-        <img src="https://github.com/clarafari.png" width="100px;" alt="Foto da Djeovannabr />
+        <img src="https://github.com/clarafari.png" width="100px;" alt="Foto da Djeovannabr"/><br />
         <sub><b>Clara Djeovanna</b></sub>
       </a><br />
     </td>
