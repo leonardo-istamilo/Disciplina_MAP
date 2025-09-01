@@ -6,92 +6,63 @@ import controleAcademico.Professor;
 import controleAcademico.Disciplina;
 import controleAcademico.Horario;
 
-import controleAcademico.AlunoDisciplina;
-import controleAcademico.ProfessorDisciplina;
 import controleAcademico.ControleAcademico;
+import controleAcademico.Instituicao;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        //usado para geração aleatória de Id's e Matrículas -> String.valueOf(r.nextInt(100000000)
-        Random r = new Random();
-
         ControleAcademico controle = new ControleAcademico();
+        Instituicao instituicao = new Instituicao();
 
-        //Criando professores
-        Professor sabrina = new Professor("Sabrina", String.valueOf(r.nextInt(100000000)));
-        Professor antonio = new Professor("Antônio", String.valueOf(r.nextInt(10000000)));
-        Professor daniel = new Professor("daniel", String.valueOf(r.nextInt(1000000000)));
+        // 1. Criando e adicionando professores ao sistema com a Instituicao
+        List<Professor> professores = instituicao.getProfessores();
+        for (Professor professor : professores) {
+            controle.adicionarProfessorSistema(professor);
+        }
 
-        // Adicionando professores ao sistema
-        controle.adicionarProfessorSistema(sabrina);
-        controle.adicionarProfessorSistema(antonio);
-        controle.adicionarProfessorSistema(daniel);
+        // 2. Criando e adicionando alunos ao sistema com a Instituicao
+        List<Aluno> alunos = instituicao.getAlunos();
+        for (Aluno aluno : alunos) {
+            controle.adicionarAlunoSistema(aluno);
+        }
 
+        // 3. Obtendo as disciplinas já criadas e com horários definidos
+        List<Disciplina> disciplinas = instituicao.getDisciplinas();
 
-        //Criando alunos
-        Aluno pedro = new Aluno("Pedro", String.valueOf(r.nextInt(100000000)));
-        Aluno ana = new Aluno("Ana", String.valueOf(r.nextInt(100000000)));
-        Aluno miguel = new Aluno("Miguel", String.valueOf(r.nextInt(100000000)));
-        Aluno paulo = new Aluno("Paulo", String.valueOf(r.nextInt(100000000)));
-        Aluno diogo = new Aluno("Diogo", String.valueOf(r.nextInt(100000000)));
-        Aluno joao = new Aluno("João", String.valueOf(r.nextInt(100000000)));
-        Aluno jose = new Aluno("José", String.valueOf(r.nextInt(100000000)));
+        // Acessando as instâncias para as operações
+        Aluno pedro = alunos.get(0);
+        Aluno ana = alunos.get(1);
+        Aluno miguel = alunos.get(2);
+        Aluno diogo = alunos.get(3);
+        Professor sabrina = professores.get(0);
+        Professor daniel = professores.get(2);
 
-        // Adicionando Alunos ao sistema
-        controle.adicionarAlunoSistema(pedro);
-        controle.adicionarAlunoSistema(ana);
-        controle.adicionarAlunoSistema(miguel);
-        controle.adicionarAlunoSistema(paulo);
-        controle.adicionarAlunoSistema(diogo);
-        controle.adicionarAlunoSistema(joao);
-        controle.adicionarAlunoSistema(jose);
+        Disciplina map = disciplinas.get(0);
+        Disciplina aps = disciplinas.get(1);
+        Disciplina engSoft = disciplinas.get(2);
 
-        //Criando horarios
-        Horario h1 = new Horario(7,9, DiaSemana.Segunda);
-        Horario h2 = new Horario(9,11, DiaSemana.Segunda);
-        Horario h3 = new Horario(11,13, DiaSemana.Segunda);
-        Horario h4 = new Horario(14,16, DiaSemana.Segunda);
-        Horario h5 = new Horario(16,18, DiaSemana.Segunda);
-
-        //Criando disciplinas
-        Disciplina map = new Disciplina(String.valueOf(r.nextInt(10000)), "Metódos Avançados de Programação", "LAB INFO III - Central de Integração Acadêmica Paulo Freire");
-        Disciplina aps = new Disciplina(String.valueOf(r.nextInt(10000)), "Análise e Projeto de Sistemas", "Sala C-107 - CCT");
-        Disciplina engSoft = new Disciplina("ENGSOFT", "Engenharia de Software", "Sala 102");
-
-        map.adicionarHorario(h1);
-        aps.adicionarHorario(h2);
-        engSoft.adicionarHorario(h3);
-
-
-        // Matriculando Alunos em Disciplinas
+        // 4. Matriculando Alunos em Disciplinas
+        System.out.println("\n--- Operações de Matrícula ---");
         controle.adicionarAlunoDisciplina(pedro, map);
         controle.adicionarAlunoDisciplina(miguel, map);
-        controle.adicionarAlunoDisciplina(diogo, map);
         controle.adicionarAlunoDisciplina(pedro, aps);
         controle.adicionarAlunoDisciplina(diogo, engSoft);
 
-        // Atribuindo Professores a Disciplinas
+        // 5. Atribuindo Professores a Disciplinas
+        System.out.println("\n--- Operações de Vínculo de Professor ---");
         controle.adicionarProfessorDisciplina(sabrina, map);
-        controle.adicionarProfessorDisciplina(sabrina, aps);
+        controle.adicionarProfessorDisciplina(sabrina, aps); // Matrícula duplicada
         controle.adicionarProfessorDisciplina(sabrina, engSoft);
 
-        // PARA TESTES:
-         Professor p = sabrina;
-         Aluno a = diogo;
-         Disciplina d = aps;
-        //
-
-        //Questão 1 lab01
+        // 6. Consultas do laboratório 01
         System.out.println("\n---------");
         System.out.println("A) QUAIS DISCIPLINAS UM PROFESSOR ESTA MINISTRANDO?");
 
-        List<Disciplina> disciplinasProfessor = controle.listarDisciplinasProfessores(p);
+        List<Disciplina> disciplinasProfessor = controle.listarDisciplinasProfessores(sabrina);
         for (Disciplina disciplina : disciplinasProfessor) {
             System.out.println("  -> "+disciplina.getNome());
         }
@@ -99,7 +70,7 @@ public class Main {
         System.out.println("\n---------");
         System.out.println("B) QUAL O HORARIO DE UM PROFESSOR?");
 
-        List<Horario> horarioProfessor = controle.listarHorarioProfessor(p);
+        List<Horario> horarioProfessor = controle.listarHorarioProfessor(sabrina);
         for (Horario hr : horarioProfessor) {
             System.out.println("  -> "+hr.getHorarioInicio()+"-"+hr.getHorarioFim());
         }
@@ -107,8 +78,8 @@ public class Main {
         System.out.println("\n---------");
         System.out.println("C) QUAIS OS ALUNOS DE UM DISCIPLINA?");
 
-        List<Aluno> alunos = controle.listarAlunosDisciplina(d);
-        for (Aluno alun : alunos) {
+        List<Aluno> listAlunos = controle.listarAlunosDisciplina(map);
+        for (Aluno alun : listAlunos) {
             System.out.println("  -> "+alun.getNome());
         }
 
@@ -116,15 +87,15 @@ public class Main {
         System.out.println("\n---------");
         System.out.println("D) QUAIS AS DISCIPLINAS DE UM ALUNO?");
 
-        List<Disciplina> disciplinas = controle.listarDisciplinasAluno(a);
-        for (Disciplina disciplina : disciplinas) {
+        List<Disciplina> listDisciplinas = controle.listarDisciplinasAluno(ana);
+        for (Disciplina disciplina : listDisciplinas) {
             System.out.println("  -> "+disciplina.getNome());
         }
 
         System.out.println("\n---------");
         System.out.println("E) QUAL O HORARIO DE UM ALUNO?");
 
-        List<Horario> horarios = controle.listarHorarioAluno(a);
+        List<Horario> horarios = controle.listarHorarioAluno(ana);
         for (Horario hr : horarios) {
             System.out.println("  -> "+hr.getHorarioInicio()+"-"+hr.getHorarioFim());
         }
@@ -132,7 +103,7 @@ public class Main {
 
         System.out.println("\n---------");
         System.out.println("F) QUAL O NUMERO DE ALUNOS DE UMA DISCIPLINA?");
-        System.out.println("  -> "+controle.quantidadeAlunosdisciplina(d));
+        System.out.println("  -> "+controle.quantidadeAlunosdisciplina(map));
 
     }
 }
