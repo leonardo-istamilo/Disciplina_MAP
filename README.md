@@ -18,8 +18,9 @@ As atividades e projetos desenvolvidos ao longo da disciplina serão organizados
 
 Cada atividade estará em uma branch com um nome descritivo. Por exemplo:
 
-  * [Disciplina_MAP/ATV_1](https://github.com/leonardo-istamilo/Disciplina_MAP/tree/ATV_1)
-  * [Disciplina_MAP/correção-ATV_1](https://github.com/leonardo-istamilo/Disciplina_MAP/tree/Corre%C3%A7%C3%A3o-ATV_1)
+  * [Disciplina_MAP/ATV_1-Expert](https://github.com/leonardo-istamilo/Disciplina_MAP/tree/ATV_1-Expert)
+  * [Disciplina_MAP/ATV_1-Correcao](https://github.com/leonardo-istamilo/Disciplina_MAP/tree/ATV_1-Expert-Correcao)
+  * [Disciplina_MAP/ATV_2-Creator](https://github.com/leonardo-istamilo/Disciplina_MAP/tree/ATV_2-Creator)
 
 Para visualizar o conteúdo de uma atividade específica, você pode usar o comando:
 
@@ -53,5 +54,27 @@ git checkout <nome-da-branch>
 * `Code Complete`, Steve McConnell, Microsoft Press; 2nd edition (June 9, 2004)
 
 -----
+## 👥 Equipe Envolvida
 
-Este README serve como um guia para o conteúdo do repositório. Lembre-se de atualizar a lista de branches à medida que novas atividades forem adicionadas.
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/clarafari">
+        <img src="https://github.com/clarafari.png" width="100px;" alt="Foto da Djeovannabr />
+        <sub><b>Clara Djeovanna</b></sub>
+      </a><br />
+    </td>
+    <td align="center">
+      <a href="https://github.com/rui-fernando">
+        <img src="https://github.com/rui-fernando.png" width="100px;" alt="Foto do Rui"/><br />
+        <sub><b>Rui Fernando</b></sub>
+      </a><br />
+    </td>
+    <td align="center">
+      <a href="https://github.com/leonardo-istamilo">
+        <img src="https://github.com/leonardo-istamilo.png" width="100px;" alt="Foto do Leonardo"/><br />
+        <sub><b>Leonardo Istamilo</b></sub>
+      </a><br />
+    </td>
+  </tr>
+</table>
