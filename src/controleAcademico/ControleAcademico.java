@@ -173,6 +173,7 @@ public class ControleAcademico {
 		return horariosProfessor;
 	}
 
+
 	public List<Aluno> listarAlunosDisciplina(Disciplina disciplina) {
 		List<Aluno> aluno = new ArrayList<>();
 		for (AlunoDisciplina ad : alunosDisciplinas){

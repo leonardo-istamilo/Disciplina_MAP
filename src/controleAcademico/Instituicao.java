@@ -72,9 +72,14 @@ public class Instituicao {
         disciplinas.add(novaDisciplina);
         return novaDisciplina;
     }
-
+    // Método adicionado para criar um Horario
     public Horario criarHorario(int inicio, int fim, DiaSemana dia) {
         return new Horario(inicio, fim, dia);
+    }
+
+    // Método para associar um horário a uma disciplina
+    public void definirHorarioParaDisciplina(Disciplina disciplina, Horario horario) {
+        disciplina.adicionarHorario(horario);
     }
 
     public List<Aluno> getAlunos() {
