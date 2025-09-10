@@ -25,6 +25,14 @@ public class Usuario {
 		return nome;
 	}
 	
+	public String getRg() {
+		return rg;
+	}
+	
+	public long getId() {
+		return id;
+	}
+	
 	
 	public List<PapelIF> getPapeis() {
 		return papeis;

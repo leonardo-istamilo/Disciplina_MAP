@@ -3,7 +3,7 @@ package pacote;
 public class Main {
 	public static void main(String[] args) {
 		
-		CentralCorridas central = new CentralCorridas();
+		//CentralCorridas central = new CentralCorridas();
 		
 		//Criando usuários
 		Usuario rui = new Usuario("Rui", "14560", 300);
