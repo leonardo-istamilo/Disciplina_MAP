@@ -1,0 +1,15 @@
+# Compilados Java
+*.class
+
+# Diretórios de build
+/bin/
+/build/
+/out/
+
+# IDEs (IntelliJ, Eclipse, VS Code)
+*.iml
+.idea/
+*.classpath
+*.project
+*.settings/
+.vscode/
