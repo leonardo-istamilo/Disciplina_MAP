@@ -1,5 +1,15 @@
 package pacote;
 
+import pacote.Usuario;
+import pacote.Motorista;
+import pacote.Passageiro;
+import pacote.Administrador;
+import pacote.Veiculo;
+import pacote.Viagem;
+import pacote.FormasPagamento;
+import pacote.SolicitacaoCorrida;
+import pacote.PapelIF;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -78,6 +88,9 @@ public class Viagem {
 				           "\n Valor: " + valor + ". Pago com " + formaPagamento + 
 				           "\n Avaliação: " + avaliacao + "/5");
 	}
-	
+
+	public FormasPagamento getFormaPagamento() {
+		return formaPagamento;
+	}
 	
 }

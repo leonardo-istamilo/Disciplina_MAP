@@ -1,5 +1,16 @@
 package pacote;
 
+import pacote.Usuario;
+import pacote.Motorista;
+import pacote.Passageiro;
+import pacote.Administrador;
+import pacote.Veiculo;
+import pacote.Viagem;
+import pacote.FormasPagamento;
+import pacote.SolicitacaoCorrida;
+import pacote.PapelIF;
+
+
 public class Main {
 	public static void main(String[] args) {
 		
