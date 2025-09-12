@@ -1,38 +1,19 @@
 package pacote;
+import pacote.IF_Administrador;
 
-public class Administrador implements PapelIF {
+public class Administrador implements IF_Administrador {
+    @Override
+    public void gerenciarUsuarios() {
+        System.out.println("Administrador gerenciando usuários...");
+    }
 
     @Override
-    public void executar(Usuario usuario) {
-        System.out.println(usuario.getNome() + " agora é administrador.");
+    public void gerenciarPagamentos() {
+        System.out.println("Administrador gerenciando pagamentos...");
     }
 
-    public void detalharUsuario(Usuario u) {
-        System.out.println("\n--- Detalhes do usuário: " + u.getNome() + " ---");
-
-        
-        System.out.println("Veículos cadastrados:");
-        for (Veiculo v : u.getVeiculos()) {
-            System.out.println(" - " + v.getDescricao());
-        }
-
-        // se for passageiro
-        for (PapelIF papel : u.getPapeis()) {
-            if (papel instanceof Passageiro passageiro) {
-                System.out.println("Formas de pagamento:");
-                for (FormasPagamento fp : passageiro.getFormasPagamento()) {
-                    System.out.println(" - " + fp);
-                }
-            }
-        }
-
-        System.out.println("Histórico de viagens:");
-        u.exibirHistorico();
-    }
-
-
-    public void detalharViagem(Viagem v) {
-        System.out.println("\n--- Detalhes da viagem ---");
-        v.exibirInformacoes();
+    @Override
+    public void fornecerSuporte() {
+        System.out.println("Administrador fornecendo suporte...");
     }
 }

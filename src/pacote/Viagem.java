@@ -1,83 +1,63 @@
 package pacote;
 
+import pacote.Usuario;
+import pacote.FormasPagamento;
+import pacote.Veiculo;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class Viagem {
-	
-	private String origem, destino;
-	private LocalDateTime inicio, fim; //horario da corrida (inicio e fim)
+	private String origem;
+	private String destino;
+	private String horario;
 	private Usuario motorista;
 	private Usuario passageiro;
-	private Veiculo veiculo;
+	private Veiculo veiculoUtilizado;
 	private double valor;
 	private FormasPagamento formaPagamento;
 	private int avaliacao;
-	
-	private static final double TARIFA_FIXA = 5.56;
-	private static final double TARIFA_MINUTO = 2.25;
-	
-	public Viagem(String origem, String destino, LocalDateTime inicio, LocalDateTime fim, Usuario motorista, 
-			Usuario passageiro, Veiculo veiculo, FormasPagamento formaPagamento) {
-	
+
+	public Viagem(String origem, String destino, String horario, Usuario motorista, Usuario passageiro, Veiculo veiculo, double valor, FormasPagamento formaPagamento, int avaliacao) {
 		this.origem = origem;
 		this.destino = destino;
-		this.inicio = inicio;
-		this.fim = fim;
+		this.horario = horario;
 		this.motorista = motorista;
 		this.passageiro = passageiro;
-		this.veiculo = veiculo;
-		this.valor = calcularValor();
+		this.veiculoUtilizado = veiculo;
+		this.valor = valor;
 		this.formaPagamento = formaPagamento;
-		this.avaliacao = gerarAvaliacao();
-		
-		motorista.addViagem(this, "Motorista");
-		passageiro.addViagem(this, "Passageiro");
+		this.avaliacao = avaliacao;
 	}
 
-	public String getOrigem() {
-		return origem;
+	public void exibirDetalhes() {
+		System.out.println("--- Detalhes da Viagem ---");
+		System.out.println("Origem: " + origem);
+		System.out.println("Destino: " + destino);
+		System.out.println("Horário: " + horario);
+		System.out.println("Motorista: " + motorista.getNome());
+		System.out.println("Passageiro: " + passageiro.getNome());
+		System.out.println("Veículo: " + veiculoUtilizado.toString());
+		System.out.println("Valor: R$" + String.format("%.2f", valor));
+		System.out.println("Forma de Pagamento: " + formaPagamento);
+		System.out.println("Avaliação: " + avaliacao + " estrelas");
 	}
 
-	public String getDestino() {
-		return destino;
+	public Usuario getMotorista() {
+		return motorista;
+	}
+
+	public Usuario getPassageiro() {
+		return passageiro;
 	}
 
 	public double getValor() {
 		return valor;
 	}
 
-
 	public int getAvaliacao() {
 		return avaliacao;
 	}
-
-	private int gerarAvaliacao() {
-		Random r = new Random();
-		
-		return r.nextInt(1,5);
-	}
-	
-	public double calcularValor() {
-		long min = Duration.between(inicio, fim).toMinutes();
-		return TARIFA_MINUTO * min + TARIFA_FIXA;
-	}
-
-	public void exibirInformacoes() {
-		
-		DateTimeFormatter br = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-		
-		System.out.println("\n Viagem de " + origem + " para " + destino +
-				           "\n Horário de início: " + inicio.format(br) + 
-				           "\n Horário do fim: " + (fim != null ? fim.format(br) : "Em andamento") + 
-				           "\n Motorista: " + motorista.getNome() + 
-				           "\n Passageiro: " + passageiro.getNome() + 
-				           "\n Veiculo: " + veiculo.getDescricao() + 
-				           "\n Valor: " + valor + ". Pago com " + formaPagamento + 
-				           "\n Avaliação: " + avaliacao + "/5");
-	}
-	
-	
 }

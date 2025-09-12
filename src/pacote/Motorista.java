@@ -1,15 +1,34 @@
 package pacote;
+import pacote.Veiculo;
 
-public class Motorista implements PapelIF {
-	
-	@Override
-	public void executar(Usuario usuario) {
-		System.out.println(usuario.getNome() + " agora atua como motorista.");
+import java.util.ArrayList;
+import java.util.List;
+
+import pacote.IF_Motorista;
+
+public class Motorista implements IF_Motorista{
+
+	private List<Veiculo> veiculos;
+
+	public Motorista() {
+		this.veiculos = new ArrayList<>();
 	}
-	
-    public Viagem aceitarCorrida(SolicitacaoCorrida solicitacao, Usuario motorista, Veiculo veiculo) {
-        
-    	System.out.println(motorista.getNome() + " aceitando a corrida");
-    	return solicitacao.aceitar(motorista, veiculo);
-    }	
+
+	@Override
+	public String aceitarCorrida() {
+		return "Motorista aceitando corrida.";
+	}
+
+	@Override
+	public void transportarPassageiro() {
+	}
+
+	@Override
+	public void adicionarVeiculo(Veiculo veiculo) {
+		this.veiculos.add(veiculo);
+	}
+
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
+	}
 }

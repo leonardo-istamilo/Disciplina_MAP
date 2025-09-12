@@ -1,74 +1,78 @@
 package pacote;
 
+import pacote.Passageiro;
+import pacote.Motorista;
+import pacote.Administrador;
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Usuario {
-	
-	private String nome, rg;
-	private long id;
-	
-	private List<Veiculo> veiculos = new ArrayList<>();
-	private List<PapelIF> papeis = new ArrayList<>();
-	private Map<Viagem, String> historicoViagens = new HashMap<>();
+	private String nome;
+	private String cpf;
+	private Passageiro passageiro;
+	private Motorista motorista;
+	private Administrador administrador;
 
-	public Usuario(String nome, String rg, long id) {
+	public Usuario(String nome, String cpf) {
 		this.nome = nome;
-		this.rg = rg;
-		this.id = id;
-
+		this.cpf = cpf;
 	}
-	
+
+	public Passageiro tornarPassageiro() {
+		if (this.passageiro == null) {
+			this.passageiro = new Passageiro();
+		}
+		return this.passageiro;
+	}
+
+	public Motorista tornarMotorista() {
+		if (this.motorista == null) {
+			this.motorista = new Motorista();
+		}
+		return this.motorista;
+	}
+
+	public Administrador tornarAdministrador() {
+		if (this.administrador == null) {
+			this.administrador = new Administrador();
+		}
+		return this.administrador;
+	}
+
+	public void exibirFuncoes() {
+		System.out.println("Funções de " + this.nome + ":");
+		if (this.passageiro != null) {
+			System.out.println("- Passageiro");
+		}
+		if (this.motorista != null) {
+			System.out.println("- Motorista");
+		}
+		if (this.administrador != null) {
+			System.out.println("- Administrador");
+		}
+	}
+
+	public Passageiro getPassageiro() {
+		return passageiro;
+	}
+
+	public Motorista getMotorista() {
+		return motorista;
+	}
+
+	public Administrador getAdministrador() {
+		return administrador;
+	}
+
 	public String getNome() {
 		return nome;
 	}
-	
-	public String getRg() {
-		return rg;
-	}
-	
-	public long getId() {
-		return id;
-	}
-	
-	
-	public List<PapelIF> getPapeis() {
-		return papeis;
-	}
-	
-	public List<Veiculo> getVeiculos() {
-		return veiculos;
-	}
 
-	public void addPapel(PapelIF papel) {
-		papeis.add(papel);
-	}
-	
-	public void addViagem(Viagem viagem, String papel) {
-	    historicoViagens.put(viagem, papel);
-	}
-	
-	public void exibirHistorico() {
-	    System.out.println("\n Histórico de viagens de " + nome + ":");
-
-	    for (Map.Entry<Viagem, String> entrada : historicoViagens.entrySet()) {
-	        Viagem v = entrada.getKey();
-	        String papel = entrada.getValue();
-
-	        System.out.printf("[%s] %s → %s | Valor: R$%.2f | Avaliação: %s\n",
-	            papel,
-	            v.getOrigem(),
-	            v.getDestino(),
-	            v.getValor(),
-	            v.getAvaliacao() >= 0 ? v.getAvaliacao() + "/5" : "Não avaliada"
-	        );
-	    }
-	}
-	public void executarPapeis() {
-		for (PapelIF papel : papeis) {
-			papel.executar(this);
-		}
+	public String getCpf() {
+		return cpf;
 	}
 }
