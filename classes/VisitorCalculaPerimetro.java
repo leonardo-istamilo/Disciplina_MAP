@@ -4,7 +4,7 @@ public class VisitorCalculaPerimetro implements VisitorIF {
 
 	@Override
 	public double visitaRetangulo(Retangulo r) {
-		return (r.getAltura()* + r.getLargura()) * 2;
+		return (r.getAltura() + r.getLargura()) * 2;
 	}
 
 	@Override
